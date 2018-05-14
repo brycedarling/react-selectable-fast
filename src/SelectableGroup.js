@@ -332,10 +332,10 @@ class SelectableGroup extends Component {
       const canSelect = mixedDeselect ? !item.deselected : !this.deselectionStarted
 
       if (!selecting && !selected && canSelect) {
-        /*
         if (item.props.file.id === 27) {
-          console.log('wasSelected 3', false)
+          console.log('wasSelected 3')
         }
+        /*
         item.setState({ selecting: true, wasSelected: false })
         */
         item.setState({ selecting: true })
@@ -349,10 +349,10 @@ class SelectableGroup extends Component {
 
     if (!click && !isCollided && selecting) {
       if (this.selectingItems.has(item)) {
-        /*
         if (item.props.file.id === 27) {
-          console.log('wasSelected 4', false)
+          console.log('wasSelected 4')
         }
+        /*
         item.setState({ selecting: false, wasSelected: false })
         */
         item.setState({ selecting: false })
@@ -364,10 +364,10 @@ class SelectableGroup extends Component {
     }
 
     if (!click && !isCollided && wasSelected && !selected) {
-      /*
       if (item.props.file.id === 27) {
-        console.log('wasSelected 5', false)
+        console.log('wasSelected 5 selected', true)
       }
+      /*
       item.setState({ selected: true, wasSelected: false })
       */
       item.setState({ selected: true })
