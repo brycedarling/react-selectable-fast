@@ -924,11 +924,10 @@
                       [].concat(h(o.selectedItems), h(o.selectingItems))
                     )),
                       o.registry.forEach(function(e) {
-                        console.log(e),
-                          e.value.state.wasSelected &&
-                            (console.log('wasSelected', e),
-                            e.setState({ selected: !0, selecting: !1, wasSelected: !0 }),
-                            o.selectedItems.add(e))
+                        e.state.wasSelected &&
+                          (console.log('add item', e),
+                          e.setState({ selected: !0, selecting: !1, wasSelected: !0 }),
+                          o.selectedItems.add(e))
                       }),
                       o.selectingItems.clear(),
                       1 === t.which &&
