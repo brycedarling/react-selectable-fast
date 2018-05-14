@@ -470,9 +470,9 @@ class SelectableGroup extends Component {
         item.setState({ selected: true, selecting: false, wasSelected: true })
       }
       this.selectedItems = new Set([...this.selectedItems, ...this.selectingItems])
-      console.log('registry', this.registry)
       this.registry.forEach(item => {
-        if (item.props.wasSelected) {
+        console.log(item)
+        if (item.value.state.wasSelected) {
           console.log('wasSelected', item)
           item.setState({ selected: true, selecting: false, wasSelected: true })
           this.selectedItems.add(item)
