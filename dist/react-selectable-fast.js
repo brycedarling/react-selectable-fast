@@ -628,14 +628,14 @@
           }
         })(),
         s = o(0),
-        l = p(s),
+        l = d(s),
         i = o(1),
-        c = p(o(8)),
+        c = d(o(8)),
         a = o(2),
-        u = p(a),
-        f = p(o(7)),
-        d = p(o(6))
-      function p(e) {
+        u = d(a),
+        f = d(o(7)),
+        p = d(o(6))
+      function d(e) {
         return e && e.__esModule ? e : { default: e }
       }
       function h(e) {
@@ -733,16 +733,16 @@
                       o.mouseDownData.boxTop - o.scrollBounds.top,
                       o.mouseDownData.scrollTop - i
                     ),
-                    d = f - u
-                  f = Math.min(f - d, f)
-                  var p = o.mouseDownData.boxLeft - s,
+                    p = f - u
+                  f = Math.min(f - p, f)
+                  var d = o.mouseDownData.boxLeft - s,
                     m = o.mouseDownData.boxLeft - o.scrollBounds.left,
-                    v = o.applyContainerScroll(Math.min(m - p, m), -c)
+                    v = o.applyContainerScroll(Math.min(m - d, m), -c)
                   o.selectbox.setState(
                     {
                       isBoxSelecting: !0,
-                      boxWidth: Math.abs(p),
-                      boxHeight: Math.abs(d),
+                      boxWidth: Math.abs(d),
+                      boxHeight: Math.abs(p),
                       boxLeft: v,
                       boxTop: f
                     },
@@ -779,8 +779,8 @@
                     !(i = (u = f.next()).done);
                     i = !0
                   ) {
-                    var d = u.value
-                    o.processItem(d, r, e, t, s, l)
+                    var p = u.value
+                    o.processItem(p, r, e, t, s, l)
                   }
                 } catch (e) {
                   ;(c = !0), (a = e)
@@ -920,8 +920,11 @@
                         if (l) throw i
                       }
                     }
+                    var f = o.registry.filter(function(e) {
+                      return e.wasSelected
+                    })
                     ;(o.selectedItems = new Set(
-                      [].concat(h(o.selectedItems), h(o.selectingItems))
+                      [].concat(h(o.selectedItems), h(o.selectingItems), h(f))
                     )),
                       o.selectingItems.clear(),
                       1 === t.which &&
@@ -1044,20 +1047,9 @@
                   var l = (0, f.default)(o, e.bounds, t, this.props.delta),
                     i = e.state,
                     c = i.selecting,
-                    a = i.selected,
-                    u = i.wasSelected
+                    a = i.selected
                   if (n && l)
                     return (
-                      console.log(
-                        'click && isCollided',
-                        e.props.file.id,
-                        'selecting',
-                        c,
-                        'selected',
-                        a,
-                        'wasSelected',
-                        u
-                      ),
                       a ? this.selectedItems.delete(e) : this.selectedItems.add(e),
                       e.setState({ selected: !a, wasSelected: a }),
                       (this.clickedItem = e)
@@ -1065,34 +1057,14 @@
                   if (!n && l) {
                     if (a && r && (!this.selectionStarted || s))
                       return (
-                        console.log(
-                          '!click && isCollided',
-                          e.props.file.id,
-                          'selecting',
-                          c,
-                          'selected',
-                          a,
-                          'wasSelected',
-                          u
-                        ),
                         e.setState({ selected: !1, wasSelected: !0 }),
                         (e.deselected = !0),
                         (this.deselectionStarted = !0),
                         this.selectedItems.delete(e)
                       )
-                    var d = s ? !e.deselected : !this.deselectionStarted
-                    if (!c && !a && d)
+                    var u = s ? !e.deselected : !this.deselectionStarted
+                    if (!c && !a && u)
                       return (
-                        console.log(
-                          '!selecting && !selected && canSelect',
-                          e.props.file.id,
-                          'selecting',
-                          c,
-                          'selected',
-                          a,
-                          'wasSelected',
-                          u
-                        ),
                         e.setState({ selecting: !0, wasSelected: !1 }),
                         (this.selectionStarted = !0),
                         this.selectingItems.add(e),
@@ -1100,17 +1072,7 @@
                       )
                   }
                   return !n && !l && c && this.selectingItems.has(e)
-                    ? (console.log(
-                        '!click && !isCollided && selecting',
-                        e.props.file.id,
-                        'selecting',
-                        c,
-                        'selected',
-                        a,
-                        'wasSelected',
-                        u
-                      ),
-                      e.setState({ selecting: !1, selected: u, wasSelected: !1 }),
+                    ? (e.setState({ selecting: !1 }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
                     : null
@@ -1227,7 +1189,7 @@
                         ' ' +
                         (this.state.selectionMode ? this.props.selectionModeClass : '')
                     },
-                    l.default.createElement(d.default, {
+                    l.default.createElement(p.default, {
                       ref: this.getSelectboxRef,
                       fixedPosition: this.props.fixedPosition,
                       className: this.props.selectboxClassName
