@@ -923,12 +923,6 @@
                     ;(o.selectedItems = new Set(
                       [].concat(h(o.selectedItems), h(o.selectingItems))
                     )),
-                      o.registry.forEach(function(e) {
-                        e.state.wasSelected &&
-                          (console.log('add item', e),
-                          e.setState({ selected: !0, selecting: !1, wasSelected: !0 }),
-                          o.selectedItems.add(e))
-                      }),
                       o.selectingItems.clear(),
                       1 === t.which &&
                         o.mouseDownData.target === t.target &&
@@ -1050,7 +1044,8 @@
                   var l = (0, f.default)(o, e.bounds, t, this.props.delta),
                     i = e.state,
                     c = i.selecting,
-                    a = i.selected
+                    a = i.selected,
+                    u = i.wasSelected
                   if (n && l)
                     return (
                       a ? this.selectedItems.delete(e) : this.selectedItems.add(e),
@@ -1065,8 +1060,8 @@
                         (this.deselectionStarted = !0),
                         this.selectedItems.delete(e)
                       )
-                    var u = s ? !e.deselected : !this.deselectionStarted
-                    if (!c && !a && u)
+                    var d = s ? !e.deselected : !this.deselectionStarted
+                    if (!c && !a && d)
                       return (
                         e.setState({ selecting: !0, wasSelected: !1 }),
                         (this.selectionStarted = !0),
@@ -1078,7 +1073,9 @@
                     ? (e.setState({ selecting: !1, wasSelected: a }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
-                    : null
+                    : n || l || !u || this.selectingItems.has(e)
+                      ? null
+                      : (e.setState({ selected: !0 }), this.selectingItems.add(e))
                 }
               },
               {

@@ -297,7 +297,7 @@ class SelectableGroup extends Component {
     }
 
     const isCollided = doObjectsCollide(selectboxBounds, item.bounds, tolerance, this.props.delta)
-    const { selecting, selected } = item.state
+    const { selecting, selected, wasSelected } = item.state
 
     if (click && isCollided) {
       if (selected) {
@@ -340,6 +340,14 @@ class SelectableGroup extends Component {
         this.selectingItems.delete(item)
 
         return { updateSelecting: true }
+      }
+    }
+
+    if (!click && !isCollided && wasSelected) {
+      if (!this.selectingItems.has(item)) {
+        item.setState({ selected: true })
+
+        return this.selectingItems.add(item)
       }
     }
 
@@ -470,12 +478,6 @@ class SelectableGroup extends Component {
         item.setState({ selected: true, selecting: false, wasSelected: true })
       }
       this.selectedItems = new Set([...this.selectedItems, ...this.selectingItems])
-      this.registry.forEach(item => {
-        if (!item.state.wasSelected) return
-        console.log('add item', item)
-        item.setState({ selected: true, selecting: false, wasSelected: true })
-        this.selectedItems.add(item)
-      })
       this.selectingItems.clear()
 
       if (e.which === 1 && this.mouseDownData.target === e.target) {
