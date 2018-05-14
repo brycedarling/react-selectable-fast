@@ -921,7 +921,7 @@
                       }
                     }
                     var f = Array.from(o.registry).filter(function(e) {
-                      return e.wasSelected
+                      return e.props.wasSelected
                     })
                     ;(o.selectedItems = new Set(
                       [].concat(h(o.selectedItems), h(o.selectingItems), h(f))
