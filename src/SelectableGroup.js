@@ -312,7 +312,9 @@ class SelectableGroup extends Component {
 
     if (!click && isCollided) {
       if (selected && enableDeselect && (!this.selectionStarted || mixedDeselect)) {
-        console.log('wasSelected 1 true')
+        if (item.props.file.id === 25) {
+          console.log('wasSelected 1', true)
+        }
         item.setState({ selected: false, wasSelected: true })
         item.deselected = true
 
@@ -324,7 +326,9 @@ class SelectableGroup extends Component {
       const canSelect = mixedDeselect ? !item.deselected : !this.deselectionStarted
 
       if (!selecting && !selected && canSelect) {
-        console.log('selecting true')
+        if (item.props.file.id === 25) {
+          console.log('selecting true')
+        }
         item.setState({ selecting: true })
 
         this.selectionStarted = true
@@ -336,7 +340,9 @@ class SelectableGroup extends Component {
 
     if (!click && !isCollided && selecting) {
       if (this.selectingItems.has(item)) {
-        console.log('selecting false')
+        if (item.props.file.id === 25) {
+          console.log('selecting false')
+        }
         item.setState({ selecting: false })
 
         this.selectingItems.delete(item)
@@ -347,7 +353,9 @@ class SelectableGroup extends Component {
 
     if (!click && !isCollided) {
       if (wasSelected && !selected && item.deselected && !this.selectingItems.has(item)) {
-        console.log('wasSelected 2 false')
+        if (item.props.file.id === 25) {
+          console.log('wasSelected 2', false)
+        }
         item.setState({ selected: true, wasSelected: false })
         item.deselected = false
 
@@ -481,6 +489,9 @@ class SelectableGroup extends Component {
       this.handleClick(e, eventTop, eventLeft)
     } else {
       for (const item of this.selectingItems.values()) {
+        if (item.props.file.id === 25) {
+          console.log('could do something')
+        }
         item.setState({ selected: true, selecting: false })
       }
       this.selectedItems = new Set([...this.selectedItems, ...this.selectingItems])
@@ -549,6 +560,9 @@ class SelectableGroup extends Component {
     this.selectionStarted = false
     if (this.props.mixedDeselect) {
       for (const item of this.registry.values()) {
+        if (item.props.file.id === 25) {
+          console.log('wasSelected 3', false)
+        }
         item.setState({ wasSelected: false })
         item.deselected = false
       }

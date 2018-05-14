@@ -909,7 +909,9 @@
                         !(s = (a = u.next()).done);
                         s = !0
                       ) {
-                        a.value.setState({ selected: !0, selecting: !1 })
+                        var f = a.value
+                        25 === f.props.file.id && console.log('could do something'),
+                          f.setState({ selected: !0, selecting: !1 })
                       }
                     } catch (e) {
                       ;(l = !0), (i = e)
@@ -1055,7 +1057,7 @@
                   if (!n && l) {
                     if (a && r && (!this.selectionStarted || s))
                       return (
-                        console.log('wasSelected 1 true'),
+                        25 === e.props.file.id && console.log('wasSelected 1', !0),
                         e.setState({ selected: !1, wasSelected: !0 }),
                         (e.deselected = !0),
                         (this.deselectionStarted = !0),
@@ -1064,7 +1066,7 @@
                     var d = s ? !e.deselected : !this.deselectionStarted
                     if (!c && !a && d)
                       return (
-                        console.log('selecting true'),
+                        25 === e.props.file.id && console.log('selecting true'),
                         e.setState({ selecting: !0 }),
                         (this.selectionStarted = !0),
                         this.selectingItems.add(e),
@@ -1072,13 +1074,13 @@
                       )
                   }
                   return !n && !l && c && this.selectingItems.has(e)
-                    ? (console.log('selecting false'),
+                    ? (25 === e.props.file.id && console.log('selecting false'),
                       e.setState({ selecting: !1 }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
                     : n || l || !u || a || !e.deselected || this.selectingItems.has(e)
                       ? null
-                      : (console.log('wasSelected 2 false'),
+                      : (25 === e.props.file.id && console.log('wasSelected 2', !1),
                         e.setState({ selected: !0, wasSelected: !1 }),
                         (e.deselected = !1),
                         this.selectingItems.add(e),
@@ -1154,7 +1156,9 @@
                         e = !0
                       ) {
                         var s = n.value
-                        s.setState({ wasSelected: !1 }), (s.deselected = !1)
+                        25 === s.props.file.id && console.log('wasSelected 3', !1),
+                          s.setState({ wasSelected: !1 }),
+                          (s.deselected = !1)
                       }
                     } catch (e) {
                       ;(t = !0), (o = e)
