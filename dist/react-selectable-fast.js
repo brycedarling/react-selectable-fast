@@ -1046,10 +1046,10 @@
                     c = i.selecting,
                     a = i.selected,
                     u = i.wasSelected
-                  if (n && l)
+                  if ((27 === e.props.file.id && console.log(c, a, u, l, n), n && l))
                     return (
                       a ? this.selectedItems.delete(e) : this.selectedItems.add(e),
-                      e.setState({ selected: !a, wasSelected: a }),
+                      e.setState({ selected: !a, wasSelected: !a }),
                       (this.clickedItem = e)
                     )
                   if (!n && l) {
@@ -1075,7 +1075,10 @@
                       { updateSelecting: !0 })
                     : n || l || !u || this.selectingItems.has(e)
                       ? null
-                      : (e.setState({ selected: !0 }), this.selectingItems.add(e))
+                      : (console.log('select item', e),
+                        e.setState({ selected: !0 }),
+                        this.selectingItems.add(e),
+                        { updateSelecting: !0 })
                 }
               },
               {
