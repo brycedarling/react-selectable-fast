@@ -1058,8 +1058,8 @@
                   if (!n && l) {
                     if (a && r && (!this.selectionStarted || s))
                       return (
-                        27 === e.props.file.id && console.log('wasSelected 2', !0),
-                        e.setState({ selected: !1, wasSelected: !0 }),
+                        27 === e.props.file.id && console.log('wasSelected 2', !1),
+                        e.setState({ selected: !1, wasSelected: !1 }),
                         (e.deselected = !0),
                         (this.deselectionStarted = !0),
                         this.selectedItems.delete(e)
@@ -1081,8 +1081,8 @@
                       l ||
                       !u ||
                       a ||
-                      (27 === e.props.file.id && console.log('wasSelected 5', !0),
-                      e.setState({ selected: !0, wasSelected: !0 }),
+                      (27 === e.props.file.id && console.log('wasSelected 5', !1),
+                      e.setState({ selected: !0, wasSelected: !1 }),
                       (e.deselected = !1),
                       this.selectingItems.has(e))
                       ? null
