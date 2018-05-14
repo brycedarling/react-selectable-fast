@@ -469,7 +469,7 @@ class SelectableGroup extends Component {
       for (const item of this.selectingItems.values()) {
         item.setState({ selected: true, selecting: false, wasSelected: true })
       }
-      const wasSelectedItems = this.registry.filter(item => item.wasSelected)
+      const wasSelectedItems = Array.from(this.registry).filter(item => item.wasSelected)
       this.selectedItems = new Set([
         ...this.selectedItems,
         ...this.selectingItems,
