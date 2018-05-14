@@ -312,6 +312,7 @@ class SelectableGroup extends Component {
 
     if (!click && isCollided) {
       if (selected && enableDeselect && (!this.selectionStarted || mixedDeselect)) {
+        console.log('wasSelected 1 true')
         item.setState({ selected: false, wasSelected: true })
         item.deselected = true
 
@@ -323,6 +324,7 @@ class SelectableGroup extends Component {
       const canSelect = mixedDeselect ? !item.deselected : !this.deselectionStarted
 
       if (!selecting && !selected && canSelect) {
+        console.log('selecting true')
         item.setState({ selecting: true })
 
         this.selectionStarted = true
@@ -334,6 +336,7 @@ class SelectableGroup extends Component {
 
     if (!click && !isCollided && selecting) {
       if (this.selectingItems.has(item)) {
+        console.log('selecting false')
         item.setState({ selecting: false })
 
         this.selectingItems.delete(item)
@@ -344,6 +347,7 @@ class SelectableGroup extends Component {
 
     if (!click && !isCollided) {
       if (wasSelected && !selected) {
+        console.log('wasSelected 2 false')
         item.setState({ selected: true, wasSelected: false })
         item.deselected = false
 
@@ -373,7 +377,7 @@ class SelectableGroup extends Component {
     this.updateWhiteListNodes()
     for (const item of this.registry.values()) {
       if (!this.inIgnoreList(item.node) && !item.state.selected) {
-        item.setState({ selected: true, wasSelected: true })
+        item.setState({ selected: true, wasSelected: false })
         this.selectedItems.add(item)
       }
     }

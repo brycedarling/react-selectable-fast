@@ -832,7 +832,7 @@
                     var l = r.value
                     o.inIgnoreList(l.node) ||
                       l.state.selected ||
-                      (l.setState({ selected: !0, wasSelected: !0 }), o.selectedItems.add(l))
+                      (l.setState({ selected: !0, wasSelected: !1 }), o.selectedItems.add(l))
                   }
                 } catch (e) {
                   ;(t = !0), (n = e)
@@ -1055,6 +1055,7 @@
                   if (!n && l) {
                     if (a && r && (!this.selectionStarted || s))
                       return (
+                        console.log('wasSelected 1 true'),
                         e.setState({ selected: !1, wasSelected: !0 }),
                         (e.deselected = !0),
                         (this.deselectionStarted = !0),
@@ -1063,6 +1064,7 @@
                     var d = s ? !e.deselected : !this.deselectionStarted
                     if (!c && !a && d)
                       return (
+                        console.log('selecting true'),
                         e.setState({ selecting: !0 }),
                         (this.selectionStarted = !0),
                         this.selectingItems.add(e),
@@ -1070,14 +1072,16 @@
                       )
                   }
                   return !n && !l && c && this.selectingItems.has(e)
-                    ? (e.setState({ selecting: !1 }),
+                    ? (console.log('selecting false'),
+                      e.setState({ selecting: !1 }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
                     : n ||
                       l ||
                       !u ||
                       a ||
-                      (e.setState({ selected: !0, wasSelected: !1 }),
+                      (console.log('wasSelected 2 false'),
+                      e.setState({ selected: !0, wasSelected: !1 }),
                       (e.deselected = !1),
                       this.selectingItems.has(e))
                       ? null
