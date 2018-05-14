@@ -299,6 +299,10 @@ class SelectableGroup extends Component {
     const isCollided = doObjectsCollide(selectboxBounds, item.bounds, tolerance, this.props.delta)
     const { selecting, selected, wasSelected } = item.state
 
+    if (item.props.file.id === 27) {
+      console.log(selecting, selected, wasSelected, isCollided, click)
+    }
+
     if (click && isCollided) {
       if (selected) {
         this.selectedItems.delete(item)
@@ -306,7 +310,7 @@ class SelectableGroup extends Component {
         this.selectedItems.add(item)
       }
 
-      item.setState({ selected: !selected, wasSelected: selected })
+      item.setState({ selected: !selected, wasSelected: !selected })
 
       return (this.clickedItem = item)
     }
@@ -345,9 +349,13 @@ class SelectableGroup extends Component {
 
     if (!click && !isCollided && wasSelected) {
       if (!this.selectingItems.has(item)) {
+        console.log('select item', item)
+
         item.setState({ selected: true })
 
-        return this.selectingItems.add(item)
+        this.selectingItems.add(item)
+
+        return { updateSelecting: true }
       }
     }
 
