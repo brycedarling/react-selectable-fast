@@ -1046,12 +1046,18 @@
                     c = i.selecting,
                     a = i.selected,
                     u = i.wasSelected
-                  if (
-                    (console.log(e.props.file.id, 'selecting', c, 'selected', a, 'wasSelected', u),
-                    n && l)
-                  )
+                  if (n && l)
                     return (
-                      console.log('click && isCollided'),
+                      console.log(
+                        'click && isCollided',
+                        e.props.file.id,
+                        'selecting',
+                        c,
+                        'selected',
+                        a,
+                        'wasSelected',
+                        u
+                      ),
                       a ? this.selectedItems.delete(e) : this.selectedItems.add(e),
                       e.setState({ selected: !a, wasSelected: a }),
                       (this.clickedItem = e)
@@ -1059,7 +1065,16 @@
                   if (!n && l) {
                     if (a && r && (!this.selectionStarted || s))
                       return (
-                        console.log('!click && isCollided'),
+                        console.log(
+                          '!click && isCollided',
+                          e.props.file.id,
+                          'selecting',
+                          c,
+                          'selected',
+                          a,
+                          'wasSelected',
+                          u
+                        ),
                         e.setState({ selected: !1, wasSelected: !0 }),
                         (e.deselected = !0),
                         (this.deselectionStarted = !0),
@@ -1068,7 +1083,16 @@
                     var d = s ? !e.deselected : !this.deselectionStarted
                     if (!c && !a && d)
                       return (
-                        console.log('!selecting && !selected && canSelect'),
+                        console.log(
+                          '!selecting && !selected && canSelect',
+                          e.props.file.id,
+                          'selecting',
+                          c,
+                          'selected',
+                          a,
+                          'wasSelected',
+                          u
+                        ),
                         e.setState({ selecting: !0, wasSelected: !1 }),
                         (this.selectionStarted = !0),
                         this.selectingItems.add(e),
@@ -1076,7 +1100,16 @@
                       )
                   }
                   return !n && !l && c && this.selectingItems.has(e)
-                    ? (console.log('!click && !isCollided && selecting'),
+                    ? (console.log(
+                        '!click && !isCollided && selecting',
+                        e.props.file.id,
+                        'selecting',
+                        c,
+                        'selected',
+                        a,
+                        'wasSelected',
+                        u
+                      ),
                       e.setState({ selecting: !1, selected: u, wasSelected: !1 }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
