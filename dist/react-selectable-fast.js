@@ -628,14 +628,14 @@
           }
         })(),
         s = o(0),
-        l = d(s),
+        l = p(s),
         i = o(1),
-        c = d(o(8)),
+        c = p(o(8)),
         a = o(2),
-        u = d(a),
-        f = d(o(7)),
-        p = d(o(6))
-      function d(e) {
+        u = p(a),
+        f = p(o(7)),
+        d = p(o(6))
+      function p(e) {
         return e && e.__esModule ? e : { default: e }
       }
       function h(e) {
@@ -733,16 +733,16 @@
                       o.mouseDownData.boxTop - o.scrollBounds.top,
                       o.mouseDownData.scrollTop - i
                     ),
-                    p = f - u
-                  f = Math.min(f - p, f)
-                  var d = o.mouseDownData.boxLeft - s,
+                    d = f - u
+                  f = Math.min(f - d, f)
+                  var p = o.mouseDownData.boxLeft - s,
                     m = o.mouseDownData.boxLeft - o.scrollBounds.left,
-                    v = o.applyContainerScroll(Math.min(m - d, m), -c)
+                    v = o.applyContainerScroll(Math.min(m - p, m), -c)
                   o.selectbox.setState(
                     {
                       isBoxSelecting: !0,
-                      boxWidth: Math.abs(d),
-                      boxHeight: Math.abs(p),
+                      boxWidth: Math.abs(p),
+                      boxHeight: Math.abs(d),
                       boxLeft: v,
                       boxTop: f
                     },
@@ -779,8 +779,8 @@
                     !(i = (u = f.next()).done);
                     i = !0
                   ) {
-                    var p = u.value
-                    o.processItem(p, r, e, t, s, l)
+                    var d = u.value
+                    o.processItem(d, r, e, t, s, l)
                   }
                 } catch (e) {
                   ;(c = !0), (a = e)
@@ -920,12 +920,15 @@
                         if (l) throw i
                       }
                     }
-                    var f = Array.from(o.registry).filter(function(e) {
-                      return e.props.wasSelected
-                    })
                     ;(o.selectedItems = new Set(
-                      [].concat(h(o.selectedItems), h(o.selectingItems), h(f))
+                      [].concat(h(o.selectedItems), h(o.selectingItems))
                     )),
+                      o.registry.forEach(function(e) {
+                        e.props.wasSelected &&
+                          (console.log('wasSelected', e),
+                          e.setState({ selected: !0, selecting: !1, wasSelected: !0 }),
+                          o.selectedItems.add(e))
+                      }),
                       o.selectingItems.clear(),
                       1 === t.which &&
                         o.mouseDownData.target === t.target &&
@@ -1189,7 +1192,7 @@
                         ' ' +
                         (this.state.selectionMode ? this.props.selectionModeClass : '')
                     },
-                    l.default.createElement(p.default, {
+                    l.default.createElement(d.default, {
                       ref: this.getSelectboxRef,
                       fixedPosition: this.props.fixedPosition,
                       className: this.props.selectboxClassName

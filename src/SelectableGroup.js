@@ -469,12 +469,14 @@ class SelectableGroup extends Component {
       for (const item of this.selectingItems.values()) {
         item.setState({ selected: true, selecting: false, wasSelected: true })
       }
-      const wasSelectedItems = Array.from(this.registry).filter(item => item.props.wasSelected)
-      this.selectedItems = new Set([
-        ...this.selectedItems,
-        ...this.selectingItems,
-        ...wasSelectedItems,
-      ])
+      this.selectedItems = new Set([...this.selectedItems, ...this.selectingItems])
+      this.registry.forEach(item => {
+        if (item.props.wasSelected) {
+          console.log('wasSelected', item)
+          item.setState({ selected: true, selecting: false, wasSelected: true })
+          this.selectedItems.add(item)
+        }
+      })
       this.selectingItems.clear()
 
       if (e.which === 1 && this.mouseDownData.target === e.target) {
