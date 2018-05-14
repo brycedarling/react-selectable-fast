@@ -367,7 +367,7 @@ class SelectableGroup extends Component {
       if (wasSelected && !selected) {
         if (!this.selectingItems.has(item)) {
           if (item.props.file.id === 27) {
-            console.log('wasSelected 5 selected', false)
+            console.log('wasSelected 5', false)
           }
           item.setState({ selected: true, wasSelected: false })
           item.deselected = false
@@ -503,10 +503,7 @@ class SelectableGroup extends Component {
       this.handleClick(e, eventTop, eventLeft)
     } else {
       for (const item of this.selectingItems.values()) {
-        if (item.props.file.id === 27) {
-          console.log('wasSelected 6', false)
-        }
-        item.setState({ selected: true, selecting: false, wasSelected: false })
+        item.setState({ selected: true, selecting: false })
       }
       this.selectedItems = new Set([...this.selectedItems, ...this.selectingItems])
       this.selectingItems.clear()
@@ -574,6 +571,10 @@ class SelectableGroup extends Component {
     this.selectionStarted = false
     if (this.props.mixedDeselect) {
       for (const item of this.registry.values()) {
+        if (item.props.file.id === 27) {
+          console.log('wasSelected 6', false)
+        }
+        item.setState({ wasSelected: false })
         item.deselected = false
       }
     }
