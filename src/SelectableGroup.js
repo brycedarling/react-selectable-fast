@@ -299,15 +299,18 @@ class SelectableGroup extends Component {
     const isCollided = doObjectsCollide(selectboxBounds, item.bounds, tolerance, this.props.delta)
     const { selecting, selected, wasSelected } = item.state
 
-    const showLog = item.props.file.id === 23
-    if (showLog) {
-      console.log('selecting', selecting, 'selected', selected, 'wasSelected', wasSelected)
-    }
+    console.log(
+      item.props.file.id,
+      'selecting',
+      selecting,
+      'selected',
+      selected,
+      'wasSelected',
+      wasSelected
+    )
 
     if (click && isCollided) {
-      if (showLog) {
-        console.log('click && isCollided')
-      }
+      console.log('click && isCollided')
       if (selected) {
         this.selectedItems.delete(item)
       } else {
@@ -321,9 +324,7 @@ class SelectableGroup extends Component {
 
     if (!click && isCollided) {
       if (selected && enableDeselect && (!this.selectionStarted || mixedDeselect)) {
-        if (showLog) {
-          console.log('!click && isCollided')
-        }
+        console.log('!click && isCollided')
         item.setState({ selected: false, wasSelected: true })
         item.deselected = true
 
@@ -335,9 +336,7 @@ class SelectableGroup extends Component {
       const canSelect = mixedDeselect ? !item.deselected : !this.deselectionStarted
 
       if (!selecting && !selected && canSelect) {
-        if (showLog) {
-          console.log('!selecting && !selected && canSelect')
-        }
+        console.log('!selecting && !selected && canSelect')
         item.setState({ selecting: true, wasSelected: false })
 
         this.selectionStarted = true
@@ -349,10 +348,8 @@ class SelectableGroup extends Component {
 
     if (!click && !isCollided && selecting) {
       if (this.selectingItems.has(item)) {
-        if (showLog) {
-          console.log('!click && !isCollided && selecting')
-        }
-        item.setState({ selecting: false, wasSelected: selected })
+        console.log('!click && !isCollided && selecting')
+        item.setState({ selecting: false, selected: wasSelected, wasSelected: false })
 
         this.selectingItems.delete(item)
 
@@ -484,7 +481,7 @@ class SelectableGroup extends Component {
       this.handleClick(e, eventTop, eventLeft)
     } else {
       for (const item of this.selectingItems.values()) {
-        item.setState({ selected: true, selecting: false, wasSelected: item.state.selected })
+        item.setState({ selected: true, selecting: false, wasSelected: true })
       }
       this.selectedItems = new Set([...this.selectedItems, ...this.selectingItems])
       this.selectingItems.clear()
