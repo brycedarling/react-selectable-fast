@@ -909,9 +909,7 @@
                         !(s = (a = u.next()).done);
                         s = !0
                       ) {
-                        var f = a.value
-                        27 === f.props.file.id && console.log('wasSelected 6', !1),
-                          f.setState({ selected: !0, selecting: !1, wasSelected: !1 })
+                        a.value.setState({ selected: !0, selecting: !1 })
                       }
                     } catch (e) {
                       ;(l = !0), (i = e)
@@ -1058,8 +1056,8 @@
                   if (!n && l) {
                     if (a && r && (!this.selectionStarted || s))
                       return (
-                        27 === e.props.file.id && console.log('wasSelected 2', !1),
-                        e.setState({ selected: !1, wasSelected: !1 }),
+                        27 === e.props.file.id && console.log('wasSelected 2', !0),
+                        e.setState({ selected: !1, wasSelected: !0 }),
                         (e.deselected = !0),
                         (this.deselectionStarted = !0),
                         this.selectedItems.delete(e)

@@ -316,9 +316,9 @@ class SelectableGroup extends Component {
     if (!click && isCollided) {
       if (selected && enableDeselect && (!this.selectionStarted || mixedDeselect)) {
         if (item.props.file.id === 27) {
-          console.log('wasSelected 2', false)
+          console.log('wasSelected 2', true)
         }
-        item.setState({ selected: false, wasSelected: false })
+        item.setState({ selected: false, wasSelected: true })
         item.deselected = true
 
         this.deselectionStarted = true
@@ -498,10 +498,13 @@ class SelectableGroup extends Component {
       this.handleClick(e, eventTop, eventLeft)
     } else {
       for (const item of this.selectingItems.values()) {
+        /*
         if (item.props.file.id === 27) {
           console.log('wasSelected 6', false)
         }
         item.setState({ selected: true, selecting: false, wasSelected: false })
+        */
+        item.setState({ selected: true, selecting: false })
       }
       this.selectedItems = new Set([...this.selectedItems, ...this.selectingItems])
       this.selectingItems.clear()
