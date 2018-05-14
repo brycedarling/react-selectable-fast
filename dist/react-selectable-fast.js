@@ -923,6 +923,7 @@
                     ;(o.selectedItems = new Set(
                       [].concat(h(o.selectedItems), h(o.selectingItems))
                     )),
+                      console.log('registry', o.registry),
                       o.registry.forEach(function(e) {
                         e.props.wasSelected &&
                           (console.log('wasSelected', e),
@@ -1075,7 +1076,7 @@
                       )
                   }
                   return !n && !l && c && this.selectingItems.has(e)
-                    ? (e.setState({ selecting: !1 }),
+                    ? (e.setState({ selecting: !1, wasSelected: a }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
                     : null

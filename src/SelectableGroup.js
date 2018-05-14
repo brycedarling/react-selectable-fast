@@ -335,7 +335,7 @@ class SelectableGroup extends Component {
 
     if (!click && !isCollided && selecting) {
       if (this.selectingItems.has(item)) {
-        item.setState({ selecting: false })
+        item.setState({ selecting: false, wasSelected: selected })
 
         this.selectingItems.delete(item)
 
@@ -470,6 +470,7 @@ class SelectableGroup extends Component {
         item.setState({ selected: true, selecting: false, wasSelected: true })
       }
       this.selectedItems = new Set([...this.selectedItems, ...this.selectingItems])
+      console.log('registry', this.registry)
       this.registry.forEach(item => {
         if (item.props.wasSelected) {
           console.log('wasSelected', item)
