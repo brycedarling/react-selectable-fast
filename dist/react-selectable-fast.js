@@ -1046,7 +1046,7 @@
                     c = i.selecting,
                     a = i.selected,
                     u = i.wasSelected
-                  if ((27 === e.props.file.id && console.log(c, a, u, l, n), n && l))
+                  if (n && l)
                     return (
                       a ? this.selectedItems.delete(e) : this.selectedItems.add(e),
                       e.setState({ selected: !a, wasSelected: !a }),
@@ -1073,12 +1073,17 @@
                     ? (e.setState({ selecting: !1, wasSelected: a }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
-                    : n || l || !u || this.selectingItems.has(e)
-                      ? null
-                      : (console.log('select item', e),
-                        e.setState({ selected: !0 }),
-                        this.selectingItems.add(e),
-                        { updateSelecting: !0 })
+                    : (27 === e.props.file.id && console.log(c, a, u, l, n),
+                      n ||
+                      l ||
+                      !u ||
+                      a ||
+                      (console.log('select item', e),
+                      e.setState({ selected: !0 }),
+                      (e.deselected = !1),
+                      this.selectingItems.has(e))
+                        ? null
+                        : (this.selectingItems.add(e), { updateSelecting: !0 }))
                 }
               },
               {
