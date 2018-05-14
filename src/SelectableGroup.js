@@ -305,10 +305,13 @@ class SelectableGroup extends Component {
       } else {
         this.selectedItems.add(item)
       }
+      /*
       if (item.props.file.id === 27) {
         console.log('wasSelected 1', selected)
       }
       item.setState({ selected: !selected, wasSelected: selected })
+      */
+      item.setState({ selected: !selected })
 
       return (this.clickedItem = item)
     }
@@ -361,10 +364,13 @@ class SelectableGroup extends Component {
     }
 
     if (!click && !isCollided && wasSelected && !selected) {
+      /*
       if (item.props.file.id === 27) {
         console.log('wasSelected 5', false)
       }
       item.setState({ selected: true, wasSelected: false })
+      */
+      item.setState({ selected: true })
       item.deselected = false
 
       if (!this.selectingItems.has(item)) {

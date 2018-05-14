@@ -1049,8 +1049,7 @@
                   if (n && l)
                     return (
                       a ? this.selectedItems.delete(e) : this.selectedItems.add(e),
-                      27 === e.props.file.id && console.log('wasSelected 1', a),
-                      e.setState({ selected: !a, wasSelected: a }),
+                      e.setState({ selected: !a }),
                       (this.clickedItem = e)
                     )
                   if (!n && l) {
@@ -1079,8 +1078,7 @@
                       l ||
                       !u ||
                       a ||
-                      (27 === e.props.file.id && console.log('wasSelected 5', !1),
-                      e.setState({ selected: !0, wasSelected: !1 }),
+                      (e.setState({ selected: !0 }),
                       (e.deselected = !1),
                       this.selectingItems.has(e))
                       ? null
