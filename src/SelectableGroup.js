@@ -299,7 +299,7 @@ class SelectableGroup extends Component {
     const isCollided = doObjectsCollide(selectboxBounds, item.bounds, tolerance, this.props.delta)
     const { selecting, selected, wasSelected } = item.state
 
-    const showLog = item.props.file.id === 23 && wasSelected
+    const showLog = item.props.file.id === 23
     if (showLog) {
       console.log('selecting', selecting, 'selected', selected, 'wasSelected', wasSelected)
     }
