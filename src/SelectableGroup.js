@@ -306,7 +306,7 @@ class SelectableGroup extends Component {
         this.selectedItems.add(item)
       }
       if (item.props.file.id === 27) {
-        console.log('wasSelected', selected)
+        console.log('wasSelected 1', selected)
       }
       item.setState({ selected: !selected, wasSelected: selected })
 
@@ -316,7 +316,7 @@ class SelectableGroup extends Component {
     if (!click && isCollided) {
       if (selected && enableDeselect && (!this.selectionStarted || mixedDeselect)) {
         if (item.props.file.id === 27) {
-          console.log('wasSelected', true)
+          console.log('wasSelected 2', true)
         }
         item.setState({ selected: false, wasSelected: true })
         item.deselected = true
@@ -330,7 +330,7 @@ class SelectableGroup extends Component {
 
       if (!selecting && !selected && canSelect) {
         if (item.props.file.id === 27) {
-          console.log('wasSelected', false)
+          console.log('wasSelected 3', false)
         }
         item.setState({ selecting: true, wasSelected: false })
 
@@ -344,7 +344,7 @@ class SelectableGroup extends Component {
     if (!click && !isCollided && selecting) {
       if (this.selectingItems.has(item)) {
         if (item.props.file.id === 27) {
-          console.log('wasSelected', false)
+          console.log('wasSelected 4', false)
         }
         item.setState({ selecting: false, wasSelected: false })
 
@@ -356,7 +356,7 @@ class SelectableGroup extends Component {
 
     if (!click && !isCollided && wasSelected && !selected) {
       if (item.props.file.id === 27) {
-        console.log('wasSelected', false)
+        console.log('wasSelected 5', false)
       }
       item.setState({ selected: true, wasSelected: false })
       item.deselected = false
@@ -493,7 +493,7 @@ class SelectableGroup extends Component {
     } else {
       for (const item of this.selectingItems.values()) {
         if (item.props.file.id === 27) {
-          console.log('wasSelected', true)
+          console.log('wasSelected 6', true)
         }
         item.setState({ selected: true, selecting: false, wasSelected: true })
       }
