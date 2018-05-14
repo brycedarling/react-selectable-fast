@@ -1055,7 +1055,6 @@
                   if (!n && l) {
                     if (a && r && (!this.selectionStarted || s))
                       return (
-                        27 === e.props.file.id && console.log('wasSelected 2', !0),
                         e.setState({ selected: !1, wasSelected: !0 }),
                         (e.deselected = !0),
                         (this.deselectionStarted = !0),
@@ -1074,13 +1073,15 @@
                     ? (e.setState({ selecting: !1 }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
-                    : n || l || !u || a || this.selectingItems.has(e)
+                    : n ||
+                      l ||
+                      !u ||
+                      a ||
+                      (e.setState({ selected: !0, wasSelected: !1 }),
+                      (e.deselected = !1),
+                      this.selectingItems.has(e))
                       ? null
-                      : (27 === e.props.file.id && console.log('wasSelected 5', !1),
-                        e.setState({ selected: !0, wasSelected: !1 }),
-                        (e.deselected = !1),
-                        this.selectingItems.add(e),
-                        { updateSelecting: !0 })
+                      : (this.selectingItems.add(e), { updateSelecting: !0 })
                 }
               },
               {
@@ -1152,9 +1153,7 @@
                         e = !0
                       ) {
                         var s = n.value
-                        27 === s.props.file.id && console.log('wasSelected 6', !1),
-                          s.setState({ wasSelected: !1 }),
-                          (s.deselected = !1)
+                        s.setState({ wasSelected: !1 }), (s.deselected = !1)
                       }
                     } catch (e) {
                       ;(t = !0), (o = e)
