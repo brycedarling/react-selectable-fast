@@ -923,12 +923,12 @@
                     ;(o.selectedItems = new Set(
                       [].concat(h(o.selectedItems), h(o.selectingItems))
                     )),
-                      console.log('registry', o.registry),
                       o.registry.forEach(function(e) {
-                        e.props.wasSelected &&
-                          (console.log('wasSelected', e),
-                          e.setState({ selected: !0, selecting: !1, wasSelected: !0 }),
-                          o.selectedItems.add(e))
+                        console.log(e),
+                          e.value.state.wasSelected &&
+                            (console.log('wasSelected', e),
+                            e.setState({ selected: !0, selecting: !1, wasSelected: !0 }),
+                            o.selectedItems.add(e))
                       }),
                       o.selectingItems.clear(),
                       1 === t.which &&
