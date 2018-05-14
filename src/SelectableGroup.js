@@ -363,21 +363,19 @@ class SelectableGroup extends Component {
       }
     }
 
-    if (!click && !isCollided && wasSelected && !selected) {
-      if (item.props.file.id === 27) {
-        console.log('wasSelected 5 selected', true)
-      }
-      /*
-      item.setState({ selected: true, wasSelected: false })
-      */
-      item.setState({ selected: true })
-      item.deselected = false
+    if (!click && !isCollided) {
+      if (wasSelected && !selected) {
+        if (!this.selectingItems.has(item)) {
+          if (item.props.file.id === 27) {
+            console.log('wasSelected 5 selected', false)
+          }
+          item.setState({ selected: true, wasSelected: false })
+          item.deselected = false
 
-      if (!this.selectingItems.has(item)) {
-        console.log('selectingItems does not have item')
-        this.selectingItems.add(item)
+          this.selectingItems.add(item)
 
-        return { updateSelecting: true }
+          return { updateSelecting: true }
+        }
       }
     }
 

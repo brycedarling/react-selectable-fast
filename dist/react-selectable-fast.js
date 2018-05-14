@@ -1076,16 +1076,11 @@
                     ? (e.setState({ selecting: !1 }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
-                    : n ||
-                      l ||
-                      !u ||
-                      a ||
-                      (27 === e.props.file.id && console.log('wasSelected 5 selected', !0),
-                      e.setState({ selected: !0 }),
-                      (e.deselected = !1),
-                      this.selectingItems.has(e))
+                    : n || l || !u || a || this.selectingItems.has(e)
                       ? null
-                      : (console.log('selectingItems does not have item'),
+                      : (27 === e.props.file.id && console.log('wasSelected 5 selected', !1),
+                        e.setState({ selected: !0, wasSelected: !1 }),
+                        (e.deselected = !1),
                         this.selectingItems.add(e),
                         { updateSelecting: !0 })
                 }
