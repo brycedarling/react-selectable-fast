@@ -306,7 +306,7 @@ class SelectableGroup extends Component {
         this.selectedItems.add(item)
       }
 
-      item.setState({ selected: !selected, wasSelected: !selected })
+      item.setState({ selected: !selected, wasSelected: selected })
 
       return (this.clickedItem = item)
     }
@@ -335,7 +335,7 @@ class SelectableGroup extends Component {
 
     if (!click && !isCollided && selecting) {
       if (this.selectingItems.has(item)) {
-        item.setState({ selecting: false, wasSelected: selected })
+        item.setState({ selecting: false, wasSelected: false })
 
         this.selectingItems.delete(item)
 

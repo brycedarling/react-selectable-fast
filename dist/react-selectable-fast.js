@@ -1049,7 +1049,7 @@
                   if (n && l)
                     return (
                       a ? this.selectedItems.delete(e) : this.selectedItems.add(e),
-                      e.setState({ selected: !a, wasSelected: !a }),
+                      e.setState({ selected: !a, wasSelected: a }),
                       (this.clickedItem = e)
                     )
                   if (!n && l) {
@@ -1070,7 +1070,7 @@
                       )
                   }
                   return !n && !l && c && this.selectingItems.has(e)
-                    ? (e.setState({ selecting: !1, wasSelected: a }),
+                    ? (e.setState({ selecting: !1, wasSelected: !1 }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
                     : n ||
