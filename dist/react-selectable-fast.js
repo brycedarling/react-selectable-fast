@@ -1073,17 +1073,15 @@
                     ? (e.setState({ selecting: !1, wasSelected: a }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
-                    : (27 === e.props.file.id && console.log(c, a, u, l, n),
-                      n ||
+                    : n ||
                       l ||
                       !u ||
                       a ||
-                      (console.log('select item', e),
-                      e.setState({ selected: !0 }),
+                      (e.setState({ selected: !0, wasSelected: !1 }),
                       (e.deselected = !1),
                       this.selectingItems.has(e))
-                        ? null
-                        : (this.selectingItems.add(e), { updateSelecting: !0 }))
+                      ? null
+                      : (this.selectingItems.add(e), { updateSelecting: !0 })
                 }
               },
               {

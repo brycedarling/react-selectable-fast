@@ -343,13 +343,8 @@ class SelectableGroup extends Component {
       }
     }
 
-    if (item.props.file.id === 27) {
-      console.log(selecting, selected, wasSelected, isCollided, click)
-    }
-
     if (!click && !isCollided && wasSelected && !selected) {
-      console.log('select item', item)
-      item.setState({ selected: true })
+      item.setState({ selected: true, wasSelected: false })
       item.deselected = false
 
       if (!this.selectingItems.has(item)) {
