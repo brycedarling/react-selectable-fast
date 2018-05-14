@@ -6,10 +6,12 @@ const createSelectable = WrappedComponent =>
   class SelectableItem extends Component {
     static propTypes = {
       selected: bool,
+      wasSelected: bool,
     }
 
     static defaultProps = {
       selected: false,
+      wasSelected: false,
     }
 
     static contextTypes = {
@@ -18,6 +20,7 @@ const createSelectable = WrappedComponent =>
 
     state = {
       selected: this.props.selected,
+      wasSelected: this.props.selected,
       selecting: false,
     }
 
@@ -41,6 +44,7 @@ const createSelectable = WrappedComponent =>
         <WrappedComponent
           {...this.props}
           selected={this.state.selected}
+          wasSelected={this.state.wasSelected}
           selecting={this.state.selecting}
           selectableRef={this.selectableRef}
         />
