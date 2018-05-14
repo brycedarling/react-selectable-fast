@@ -1047,7 +1047,7 @@
                     c = i.selecting,
                     a = i.selected,
                     u = i.wasSelected,
-                    d = 23 === e.props.file.id && u
+                    d = 23 === e.props.file.id
                   if ((d && console.log('selecting', c, 'selected', a, 'wasSelected', u), n && l))
                     return (
                       d && console.log('click && isCollided'),
