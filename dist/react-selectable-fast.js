@@ -920,7 +920,7 @@
                         if (l) throw i
                       }
                     }
-                    var f = o.registry.filter(function(e) {
+                    var f = Array.from(o.registry).filter(function(e) {
                       return e.wasSelected
                     })
                     ;(o.selectedItems = new Set(
