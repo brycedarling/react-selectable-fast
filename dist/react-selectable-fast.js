@@ -628,14 +628,14 @@
           }
         })(),
         s = o(0),
-        l = d(s),
+        l = p(s),
         i = o(1),
-        c = d(o(8)),
+        c = p(o(8)),
         a = o(2),
-        u = d(a),
-        f = d(o(7)),
-        p = d(o(6))
-      function d(e) {
+        u = p(a),
+        f = p(o(7)),
+        d = p(o(6))
+      function p(e) {
         return e && e.__esModule ? e : { default: e }
       }
       function h(e) {
@@ -733,16 +733,16 @@
                       o.mouseDownData.boxTop - o.scrollBounds.top,
                       o.mouseDownData.scrollTop - i
                     ),
-                    p = f - u
-                  f = Math.min(f - p, f)
-                  var d = o.mouseDownData.boxLeft - s,
+                    d = f - u
+                  f = Math.min(f - d, f)
+                  var p = o.mouseDownData.boxLeft - s,
                     m = o.mouseDownData.boxLeft - o.scrollBounds.left,
-                    v = o.applyContainerScroll(Math.min(m - d, m), -c)
+                    v = o.applyContainerScroll(Math.min(m - p, m), -c)
                   o.selectbox.setState(
                     {
                       isBoxSelecting: !0,
-                      boxWidth: Math.abs(d),
-                      boxHeight: Math.abs(p),
+                      boxWidth: Math.abs(p),
+                      boxHeight: Math.abs(d),
                       boxLeft: v,
                       boxTop: f
                     },
@@ -779,8 +779,8 @@
                     !(i = (u = f.next()).done);
                     i = !0
                   ) {
-                    var p = u.value
-                    o.processItem(p, r, e, t, s, l)
+                    var d = u.value
+                    o.processItem(d, r, e, t, s, l)
                   }
                 } catch (e) {
                   ;(c = !0), (a = e)
@@ -1046,9 +1046,11 @@
                     i = e.state,
                     c = i.selecting,
                     a = i.selected,
-                    u = i.wasSelected
-                  if ((23 === e.props.file.id && console.log('processItem', c, a, u), n && l))
+                    u = i.wasSelected,
+                    d = 23 === e.props.file.id && u
+                  if ((d && console.log('selecting', c, 'selected', a, 'wasSelected', u), n && l))
                     return (
+                      d && console.log('click && isCollided'),
                       a ? this.selectedItems.delete(e) : this.selectedItems.add(e),
                       e.setState({ selected: !a, wasSelected: a }),
                       (this.clickedItem = e)
@@ -1056,6 +1058,7 @@
                   if (!n && l) {
                     if (a && r && (!this.selectionStarted || s))
                       return (
+                        d && console.log('!click && isCollided'),
                         e.setState({ selected: !1, wasSelected: !0 }),
                         (e.deselected = !0),
                         (this.deselectionStarted = !0),
@@ -1064,6 +1067,7 @@
                     var p = s ? !e.deselected : !this.deselectionStarted
                     if (!c && !a && p)
                       return (
+                        d && console.log('!selecting && !selected && canSelect'),
                         e.setState({ selecting: !0, wasSelected: !1 }),
                         (this.selectionStarted = !0),
                         this.selectingItems.add(e),
@@ -1071,7 +1075,8 @@
                       )
                   }
                   return !n && !l && c && this.selectingItems.has(e)
-                    ? (e.setState({ selecting: !1, wasSelected: a }),
+                    ? (d && console.log('!click && !isCollided && selecting'),
+                      e.setState({ selecting: !1, wasSelected: a }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
                     : null
@@ -1188,7 +1193,7 @@
                         ' ' +
                         (this.state.selectionMode ? this.props.selectionModeClass : '')
                     },
-                    l.default.createElement(p.default, {
+                    l.default.createElement(d.default, {
                       ref: this.getSelectboxRef,
                       fixedPosition: this.props.fixedPosition,
                       className: this.props.selectboxClassName
