@@ -832,7 +832,7 @@
                     var l = r.value
                     o.inIgnoreList(l.node) ||
                       l.state.selected ||
-                      (l.setState({ selected: !0, wasSelected: !1 }), o.selectedItems.add(l))
+                      (l.setState({ selected: !0, wasSelected: !0 }), o.selectedItems.add(l))
                   }
                 } catch (e) {
                   ;(t = !0), (n = e)
@@ -909,7 +909,9 @@
                         !(s = (a = u.next()).done);
                         s = !0
                       ) {
-                        a.value.setState({ selected: !0, selecting: !1, wasSelected: !0 })
+                        var f = a.value
+                        27 === f.props.file.id && console.log('wasSelected', !0),
+                          f.setState({ selected: !0, selecting: !1, wasSelected: !0 })
                       }
                     } catch (e) {
                       ;(l = !0), (i = e)
@@ -1049,12 +1051,14 @@
                   if (n && l)
                     return (
                       a ? this.selectedItems.delete(e) : this.selectedItems.add(e),
+                      27 === e.props.file.id && console.log('wasSelected', a),
                       e.setState({ selected: !a, wasSelected: a }),
                       (this.clickedItem = e)
                     )
                   if (!n && l) {
                     if (a && r && (!this.selectionStarted || s))
                       return (
+                        27 === e.props.file.id && console.log('wasSelected', !0),
                         e.setState({ selected: !1, wasSelected: !0 }),
                         (e.deselected = !0),
                         (this.deselectionStarted = !0),
@@ -1063,6 +1067,7 @@
                     var d = s ? !e.deselected : !this.deselectionStarted
                     if (!c && !a && d)
                       return (
+                        27 === e.props.file.id && console.log('wasSelected', !1),
                         e.setState({ selecting: !0, wasSelected: !1 }),
                         (this.selectionStarted = !0),
                         this.selectingItems.add(e),
@@ -1070,14 +1075,16 @@
                       )
                   }
                   return !n && !l && c && this.selectingItems.has(e)
-                    ? (e.setState({ selecting: !1, wasSelected: !1 }),
+                    ? (27 === e.props.file.id && console.log('wasSelected', !1),
+                      e.setState({ selecting: !1, wasSelected: !1 }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
                     : n ||
                       l ||
                       !u ||
                       a ||
-                      (e.setState({ selected: !0, wasSelected: !1 }),
+                      (27 === e.props.file.id && console.log('wasSelected', !1),
+                      e.setState({ selected: !0, wasSelected: !1 }),
                       (e.deselected = !1),
                       this.selectingItems.has(e))
                       ? null

@@ -305,7 +305,9 @@ class SelectableGroup extends Component {
       } else {
         this.selectedItems.add(item)
       }
-
+      if (item.props.file.id === 27) {
+        console.log('wasSelected', selected)
+      }
       item.setState({ selected: !selected, wasSelected: selected })
 
       return (this.clickedItem = item)
@@ -313,6 +315,9 @@ class SelectableGroup extends Component {
 
     if (!click && isCollided) {
       if (selected && enableDeselect && (!this.selectionStarted || mixedDeselect)) {
+        if (item.props.file.id === 27) {
+          console.log('wasSelected', true)
+        }
         item.setState({ selected: false, wasSelected: true })
         item.deselected = true
 
@@ -324,6 +329,9 @@ class SelectableGroup extends Component {
       const canSelect = mixedDeselect ? !item.deselected : !this.deselectionStarted
 
       if (!selecting && !selected && canSelect) {
+        if (item.props.file.id === 27) {
+          console.log('wasSelected', false)
+        }
         item.setState({ selecting: true, wasSelected: false })
 
         this.selectionStarted = true
@@ -335,6 +343,9 @@ class SelectableGroup extends Component {
 
     if (!click && !isCollided && selecting) {
       if (this.selectingItems.has(item)) {
+        if (item.props.file.id === 27) {
+          console.log('wasSelected', false)
+        }
         item.setState({ selecting: false, wasSelected: false })
 
         this.selectingItems.delete(item)
@@ -344,6 +355,9 @@ class SelectableGroup extends Component {
     }
 
     if (!click && !isCollided && wasSelected && !selected) {
+      if (item.props.file.id === 27) {
+        console.log('wasSelected', false)
+      }
       item.setState({ selected: true, wasSelected: false })
       item.deselected = false
 
@@ -372,7 +386,7 @@ class SelectableGroup extends Component {
     this.updateWhiteListNodes()
     for (const item of this.registry.values()) {
       if (!this.inIgnoreList(item.node) && !item.state.selected) {
-        item.setState({ selected: true, wasSelected: false })
+        item.setState({ selected: true, wasSelected: true })
         this.selectedItems.add(item)
       }
     }
@@ -478,6 +492,9 @@ class SelectableGroup extends Component {
       this.handleClick(e, eventTop, eventLeft)
     } else {
       for (const item of this.selectingItems.values()) {
+        if (item.props.file.id === 27) {
+          console.log('wasSelected', true)
+        }
         item.setState({ selected: true, selecting: false, wasSelected: true })
       }
       this.selectedItems = new Set([...this.selectedItems, ...this.selectingItems])
