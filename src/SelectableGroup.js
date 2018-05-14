@@ -346,16 +346,14 @@ class SelectableGroup extends Component {
     }
 
     if (!click && !isCollided) {
-      if (wasSelected && !selected) {
+      if (wasSelected && !selected && item.deselected && !this.selectingItems.has(item)) {
         console.log('wasSelected 2 false')
         item.setState({ selected: true, wasSelected: false })
         item.deselected = false
 
-        if (!this.selectingItems.has(item)) {
-          this.selectingItems.add(item)
+        this.selectingItems.add(item)
 
-          return { updateSelecting: true }
-        }
+        return { updateSelecting: true }
       }
     }
 

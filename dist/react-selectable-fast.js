@@ -1076,16 +1076,13 @@
                       e.setState({ selecting: !1 }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
-                    : n ||
-                      l ||
-                      !u ||
-                      a ||
-                      (console.log('wasSelected 2 false'),
-                      e.setState({ selected: !0, wasSelected: !1 }),
-                      (e.deselected = !1),
-                      this.selectingItems.has(e))
+                    : n || l || !u || a || !e.deselected || this.selectingItems.has(e)
                       ? null
-                      : (this.selectingItems.add(e), { updateSelecting: !0 })
+                      : (console.log('wasSelected 2 false'),
+                        e.setState({ selected: !0, wasSelected: !1 }),
+                        (e.deselected = !1),
+                        this.selectingItems.add(e),
+                        { updateSelecting: !0 })
                 }
               },
               {
