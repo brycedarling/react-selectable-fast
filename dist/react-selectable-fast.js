@@ -1078,7 +1078,7 @@
                       e.setState({ selecting: !1 }),
                       this.selectingItems.delete(e),
                       { updateSelecting: !0 })
-                    : n || l || !u || a || !e.deselected || this.selectingItems.has(e)
+                    : n || l || !u || a || this.selectingItems.has(e)
                       ? null
                       : (25 === e.props.file.id && console.log('wasSelected 2', !1),
                         e.setState({ selected: !0, wasSelected: !1 }),

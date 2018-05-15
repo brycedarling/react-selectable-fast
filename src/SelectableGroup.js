@@ -352,7 +352,7 @@ class SelectableGroup extends Component {
     }
 
     if (!click && !isCollided) {
-      if (wasSelected && !selected && item.deselected && !this.selectingItems.has(item)) {
+      if (wasSelected && !selected && !this.selectingItems.has(item)) {
         if (item.props.file.id === 25) {
           console.log('wasSelected 2', false)
         }
